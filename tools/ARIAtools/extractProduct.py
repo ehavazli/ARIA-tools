@@ -106,7 +106,7 @@ class InterpCube(object):
         self.offset = np.mean(self.data)
         for i in range(len(self.hgts)):
             self.interp.append(RectBivariateSpline(self.latobj, self.lonobj,
-                                                    self.data[i]-self.offset))
+                                                   self.data[i]-self.offset))
 
     def __call__(self, line, pix, h):
         """Interpolate at a single point."""
@@ -118,7 +118,7 @@ class InterpCube(object):
 
 class metadata_qualitycheck:
     """Metadata quality control function.
-    
+
     Artifacts recognized based off of covariance of cross-profiles.
     Bug-fix varies based off of layer of interest.
     Verbose mode generates a series of quality control plots with
@@ -1041,9 +1041,9 @@ def tropo_correction(full_product_dict, tropo_products, bbox_file,
                     ]
 
                 # Check and report if tropospheric product falls outside of standard product range
-                latest_start = max(aria_rsc_dict['azimuthZeroDopplerMidTime'] 
+                latest_start = max(aria_rsc_dict['azimuthZeroDopplerMidTime']
                                    + [min(tropo_rsc_dict['TIME_OF_DAY'])])
-                earliest_end = min(aria_rsc_dict['azimuthZeroDopplerMidTime'] 
+                earliest_end = min(aria_rsc_dict['azimuthZeroDopplerMidTime']
                                    + [max(tropo_rsc_dict['TIME_OF_DAY'])])
                 delta = (earliest_end - latest_start).total_seconds() + 1
                 if delta<0:
@@ -1087,7 +1087,7 @@ def tropo_correction(full_product_dict, tropo_products, bbox_file,
             tropo_product   = np.subtract(tropo_secondary, tropo_product)
 
             # Convert troposphere to rad
-            tropo_product = np.divide(tropo_product, 
+            tropo_product = np.divide(tropo_product,
                                       float(metadata_dict[1][i][0]) \
                                       / (4*np.pi))
             # Account for lookAngle

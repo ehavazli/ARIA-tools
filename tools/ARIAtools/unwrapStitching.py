@@ -201,6 +201,7 @@ class Stitching:
             else:
                 inpFile_keep.append(inFile_temp)
                 ccFile_keep.append(ccFile)
+
                 # shape file in case passed through
                 if self.stitchMethodType == "overlap":
                     bbox_keep.append(bbox_temp)
@@ -209,6 +210,7 @@ class Stitching:
         # update the input files and only keep those being GDAL compatible
         self.inpFile = inpFile_keep
         self.ccFile = ccFile_keep
+
         # shape file in case passed through
         if self.stitchMethodType == "overlap":
             self.prodbbox = bbox_keep
@@ -434,8 +436,10 @@ class UnwrapOverlap(Stitching):
                 # connected component
                 out_data, connCompNoData1, geoTrans, proj = GDALread(
                     self.ccFile[counter], data_band=1, loadData=False)
+                del out_data
                 out_data, connCompNoData2, geoTrans, proj = GDALread(
                     self.ccFile[counter+1], data_band=1, loadData=False)
+                del out_data
                 connCompFile1 = gdal.Warp('', self.ccFile[counter],
                                           options=gdal.WarpOptions(format="MEM",
                                           cutlineDSName=outname,
@@ -450,8 +454,10 @@ class UnwrapOverlap(Stitching):
                 # unwrapped phase
                 out_data, unwNoData1, geoTrans, proj = GDALread(
                     self.inpFile[counter], data_band=1, loadData=False)
+                del out_data
                 out_data, unwNoData2, geoTrans, proj = GDALread(
                     self.inpFile[counter+1], data_band=1, loadData=False)
+                del out_data
                 unwFile1 = gdal.Warp('', self.inpFile[counter],
                                      options=gdal.WarpOptions(format="MEM",
                                      cutlineDSName=outname,
@@ -720,6 +726,7 @@ class UnwrapComponents(Stitching):
             # and no-data value
             poly, ccomp, geoTrans, proj, sizeData = polygonizeConn(
                 self.ccFile[k_file])
+            del proj
 
             # tracking for each file the mapping of connected component to a
             # unique connected component defined below.
@@ -1273,7 +1280,7 @@ def GDALread(filename, data_band=1, loadData=True):
     if loadData:
         out_data = raster.ReadAsArray()
     else:
-        out_data=None
+        out_data = None
     # parsing no-data
     try:
         NoData = raster.GetNoDataValue()
@@ -1616,6 +1623,7 @@ def gdalTest(file, verbose=False):
     try:
         ds = gdal.Info(file)
         ds = None
+        del ds
         return file
     except RuntimeError:
         log.debug('%s is not GDAL compatible', file)
