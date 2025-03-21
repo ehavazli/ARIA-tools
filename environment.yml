@@ -1,16 +1,15 @@
-# create environment : conda env create -f environment.yml
-# update dependencies: conda env update -f environment.yml
-# remove environment : conda env remove -n ARIA-tools
-# enter  environment : conda activate ARIA-tools
-# exit   environment : conda deactivate
+# Conda environment setup for ARIA-tools
 name: ARIA-tools
 channels:
   - conda-forge
   - defaults
 dependencies:
+  # Core Python version
+  - python>=3.10
+
+  # Geospatial & scientific libraries
   - affine
   - arm_pyart
-  - asf_search
   - dask
   - dem_stitcher>=2.5.8
   - gdal>=3.7.0
@@ -20,21 +19,15 @@ dependencies:
   - libgdal-netcdf
   - matplotlib
   - netcdf4
-  - numpy
+  - numpy>=1.24.*
   - pandas
-  - parallel
   - pip
   - pyproj
   - pytest
-  - python>=3.8
   - python-dateutil
-  - rasterio
+  - rasterio>=1.3.*
   - rioxarray
   - requests
-  - scipy>1.10.0
+  - scipy>=1.11.*
   - shapely
-  - tile_mate>=0.0.12
   - xarray
-  #for ARIA-tools-docs
-  #- jupyterlab
-  #- jupyter_contrib_nbextensions

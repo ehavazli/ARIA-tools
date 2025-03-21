@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=64.0", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aria-tools"
+description = "A CLI tool for downloading, processing, and visualizing InSAR data."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+
+dynamic = ["version", "dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+[project.optional-dependencies]
+docs = [
+    "jupyterlab",
+    "jupyter_contrib_nbextensions",
+]
+
+[tool.setuptools_scm]
+# https://github.com/pypa/setuptools_scm#configuration-parameters
+write_to = "aria_tools/_version.py"
+# https://github.com/pypa/setuptools_scm#version-number-construction
+version_scheme = "no-guess-dev" # Will not guess the next version
+
+[project.scripts]
+aria-tools = "aria_tools.cli:cli"
