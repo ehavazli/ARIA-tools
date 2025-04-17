@@ -45,6 +45,7 @@ def url_versions(urls: List[str], version: Optional[str], workdir: str) -> List[
         logger.warning("Could not write version log file: %s", e)
 
     logger.info(
-        "Filtered %d products matching version '%s'.", len(matched_urls), version
+        "Filtered %d products matching version '%s'.",
+        len(matched_urls), version
     )
     return matched_urls

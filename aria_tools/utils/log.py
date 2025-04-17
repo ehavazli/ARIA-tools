@@ -28,7 +28,9 @@ class UnixColorFormatter(logging.Formatter):
     BOLD_RED = "\x1b[31;1m"
     RESET = "\x1b[0m"
 
-    COLORS = {logging.WARNING: YELLOW, logging.ERROR: RED, logging.CRITICAL: BOLD_RED}
+    COLORS = {logging.WARNING: YELLOW,
+              logging.ERROR: RED,
+              logging.CRITICAL: BOLD_RED}
 
     def __init__(self, fmt=None, datefmt=None, style="%", use_color=True):
         """

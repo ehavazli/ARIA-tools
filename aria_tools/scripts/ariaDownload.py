@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
-"""
-Legacy CLI entry point for ARIA-tools download. Supports both CLI flags and config file input.
-"""
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# Author: Emre Havazli
+# Copyright (c) 2025, by the California Institute of Technology. ALL RIGHTS
+# RESERVED. United States Government Sponsorship acknowledged.
+#
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 import argparse
 import datetime
@@ -26,7 +30,9 @@ def create_parser():
     # Config file
     config_grp = parser.add_argument_group("Configuration file")
     config_grp.add_argument(
-        "--config", "-c", type=str, help="Path to YAML, JSON, or TOML config file."
+        "--config", "-c",
+        type=str,
+        help="Path to YAML, JSON, or TOML config file."
     )
 
     # Filtering options
@@ -45,13 +51,19 @@ def create_parser():
         help="Mission type. Default=S1",
     )
     io_grp.add_argument(
-        "-s", "--start", type=str, default="20100101", help="Start date (YYYYMMDD)."
+        "-s", "--start", type=str,
+        default="20100101",
+        help="Start date (YYYYMMDD)."
     )
     io_grp.add_argument(
-        "-e", "--end", type=str, default="21000101", help="End date (YYYYMMDD)."
+        "-e", "--end", type=str,
+        default="21000101",
+        help="End date (YYYYMMDD)."
     )
     io_grp.add_argument(
-        "-i", "--ifg", type=str, help="Specific IFG to match: YYYYMMDD_YYYYMMDD"
+        "-i", "--ifg",
+        type=str,
+        help="Specific IFG to match: YYYYMMDD_YYYYMMDD"
     )
     io_grp.add_argument(
         "--baseline-range",
